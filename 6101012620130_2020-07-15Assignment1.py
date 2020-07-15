@@ -47,11 +47,5 @@ for i in range(Ncircle):
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # Set the x, y postions of the mouse click
-            x, y = event.pos
-            if self.circle_surface.get_rect().collidepoint(x, y):
-                print('clicked on image')
-#loop over, quite pygame
-pygame.quit()
+            pygame.quit()
+            quit()
