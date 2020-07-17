@@ -1,3 +1,4 @@
+#6101012620130
 import pygame, sys, random
 from pygame.locals import *
 
@@ -34,14 +35,7 @@ class Circle():
         self.circle_character = pygame.draw.circle(self.circle_surface, self.circle_color,
          self.circle_pos, self.circle_radius, self.circle_width)
 
-
-
-
-
 speed = [1, 0]
-
-
-# Game loop
 
 while True:
 
@@ -61,15 +55,15 @@ while True:
     box = Circle.character.move(speed)
 
 
-    if box.right >= DISPLAYSURF.get_width() or box.left <= 0:
+    if box.right >= screen.get_width() or box.left <= 0:
 
         speed[0] = -speed[0]
 
 
     # Draw screen
 
-    DISPLAYSURF.fill(BLACK)
+    screen.fill(BLACK)
 
-    pygame.draw.circle(DISPLAYSURF, WHITE, (0,0),20)
+    pygame.draw.circle(screen, WHITE, (0,0),20)
 
     pygame.display.update()
