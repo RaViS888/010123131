@@ -1,11 +1,11 @@
 #6101012620130
-
 import threading
 import time
 import cmath
 import pygame
 from random import randint, randrange, random
-n=2
+n = 2
+
 print( 'File:', __file__ )
 
 def mandelbrot(c,max_iters=100):
@@ -19,7 +19,7 @@ def mandelbrot(c,max_iters=100):
 # initialize pygame
 pygame.init()
 
-# create a screen of width=600 and height=400
+# create a screen of width=500 and height=500
 scr_w, scr_h = 500, 500
 screen = pygame.display.set_mode( (scr_w, scr_h) )
 
@@ -57,6 +57,7 @@ while running:
                 g = (color << 4) & 0xc0
                 b = (color << 2) & 0xc0
                 #put if
+                #wscreen = scr_w/n , hscreen = scr_h/n
                 draw.set_at( (x, y), (255-r,255-g,255-b) )
 
     # draw the surface on the screen
