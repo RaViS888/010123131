@@ -47,10 +47,10 @@ while running:
         first_create = False
         scale = 0.006
         offset = complex(-0.55,0.0)
-        for x in range(scr_w):
-            for y in range(scr_h):
-                re = scale*(x-w2) + offset.real
-                im = scale*(y-h2) + offset.imag
+        for x in range(scr_w//n):
+            for y in range(scr_h//n):
+                re = scale*(x-(scr_w/n)) + offset.real
+                im = scale*(y-(scr_h/n)) + offset.imag
                 c = complex( re, im )
                 color = mandelbrot(c, 63)
                 r = (color << 6) & 0xc0
