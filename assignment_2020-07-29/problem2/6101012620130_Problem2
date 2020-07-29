@@ -1,0 +1,87 @@
+#6101012620130
+import pygame
+import pygame as pg
+import sys
+import random
+
+scr_w = 500
+scr_h = 500
+window_resolution = scr_w, scr_h
+screen = pygame.display.set_mode( (scr_w, scr_h) )
+pygame.display.set_caption('Switch Rect')
+surface = pygame.Surface( screen.get_size(), pygame.SRCALPHA )
+fps = 15
+
+card_wth = 50
+card_hgt = 50
+gap_x = card_wth+5
+gap_y = card_hgt+5
+
+pos_x = int((scr_w % gap_x) / 2)
+pos_y = int((scr_h % gap_y) / 2)
+
+global cards
+
+class Rect(object):
+    def __init__(self, xpos, ypos, RGB):
+        super(Rect, self).__init__()
+
+        self.RGB = RGB
+        self.xpos = xpos
+        self.ypos = ypos
+        self.width = card_wth
+        self.height = card_hgt
+        self.rect = pg.Rect(xpos, ypos, self.width, self.height)
+
+def make_rects(Rect_Xpos, Rect_Ypos):
+    global cards
+    cards = []
+    for x in range(Rect_Xpos, scr_w - gap_x, gap_x):
+        for y in range(Rect_Ypos, scr_h - gap_y, gap_y):
+            R = random.randint(0, 255)
+            G = random.randint(0, 255)
+            B = random.randint(0, 255)
+            RGB = (R,G,B)
+            card = Rect(x, y, RGB)
+            cards.append(card)
+    return cards
+
+def main():
+    global fps_clock, screen, cards
+    fps_clock = pg.time.Clock()
+    while True:
+        if pg.mouse.get_pressed()[0]:
+            print("mouse button pressed")
+            pos = pg.mouse.get_pos()
+            for card in cards:
+                if card.rect.collidepoint(pos):
+                    if event.type == pg.MOUSEBUTTONDOWN:
+                        if card.rect.collidepoint(event.pos):
+                            card.click = True
+                    elif event.type == pg.MOUSEBUTTONUP:
+                        card.click = False
+                    elif event.type == pg.QUIT:
+                        pg.quit();
+                        sys.exit()
+
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                sys.exit()
+
+        fps_clock.tick(fps)
+        update()
+
+def update():
+    global cards
+    surface.fill((0,0,0))
+    for card in cards:
+        pg.draw.rect(surface, card.RGB, card.rect, 0)
+
+    screen.blit(surface, (0,0))
+    pg.display.update()
+
+if __name__ == '__main__':
+    global cards
+    cards = make_rects(pos_x, pos_y)
+    pg.display.update()
+    main()
