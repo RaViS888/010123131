@@ -1,0 +1,48 @@
+#6101012620130
+def make_array(origin):
+    n = 0
+    for i in origin:
+        if i in '0123456789I' or i in '&+!': 
+            n += 1
+    A = ['None']
+    i = 0
+    while n > 2**i: #จำนวนที่ node ของ complete binary tree มากกว่าสิ่งที่ต้องใส่ไป
+        i += 1
+        temp = (2**i)-1
+
+    return A*temp
+
+def binary_tree_expression(origin, array):
+    origin_slide = origin[1:-1] 
+    q = 0  #q parents
+    for i in origin_slide:
+        pl = (2*q)+1 #left
+        pr = (2*q)+2 #right
+        if i == '(':
+            if array[pl] == 'None': #ถ"("เปลี่ยนำแหน่ง parents เป็นทางซ้ายของ parents ทางขวายังเป็น None
+                q = pl
+            else:                  
+                q = pr
+        elif i in '0123456789I':
+            if array[pl] in '0123456789I' or array[pl] in '&+!': 
+                array[pr] = i
+            else:              
+                array[pl] = i
+        elif i in '&+!': 
+            array[q] = i
+        elif i == ')': #')'จะตรวจว่าต่ำแหน่งของ parents
+            if q%2 == 1: 
+                q = int((q-1)/2)
+            elif q%2 == 0: 
+                q = int((q-2)/2)
+
+    return array
+#------------------------------------------------------------------------------------l
+
+def main_1(string):
+    array = make_array(string)
+    array_tree = binary_tree_expression(string, array)
+    return array_tree
+
+array_tree = main_1('!(!(0+I0&1))')
+print(array_tree)
