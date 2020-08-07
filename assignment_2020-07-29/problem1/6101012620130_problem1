@@ -1,4 +1,5 @@
 #6101012620130
+#REFERENCE: stackoverflow.com/questions/37099276/how-do-i-remove-a-specific-pygame-draw-on-click
 import pygame
 import pygame as pg
 import pygame.camera
