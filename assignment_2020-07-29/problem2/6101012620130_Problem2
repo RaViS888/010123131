@@ -1,5 +1,6 @@
 #6101012620130
 #REFERENCE: stackoverflow.com/questions/41332861/click-and-drag-a-rectangle-with-pygame
+#REFERENCE: pygame.readthedocs.io/en/latest/rect/rect.html
 import pygame
 import pygame as pg
 import sys
