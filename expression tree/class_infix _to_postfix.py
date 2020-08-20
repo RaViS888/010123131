@@ -1,3 +1,5 @@
+#6101012620130
+
 class Stack:  # ref form https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaStackinPython.html
     stack_list = []  # เก็บsymbol
 
