@@ -1,5 +1,4 @@
 #6101012620130
-
 class Stack:  # ref form https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaStackinPython.html
     stack_list = []  # เก็บsymbol
 
@@ -22,7 +21,7 @@ class Stack:  # ref form https://runestone.academy/runestone/books/published/pyt
             return self.stack_list[len(self.stack_list) - 1]
 
 
-class infix_to_postfix:
+class Operator:
     def __init__(self, express):
         self.express = express  # ค่าที่รับเข้ามา
         self.postfix = []
@@ -32,11 +31,11 @@ class infix_to_postfix:
     def __to_posfix(self):
         mystack = Stack()  # เรียกใช้function_Stack
         prec = {'(': 0, '!': 1, '&': 2, '+': 3}
-        operator_sym = '()!&+'  # () NOT AND OR 
+        operator_sym = '()!&+'  # () AND OR NOT
         # print(operator_sym)
         InfixGET = self.express  # เก็บค่าที่inputเข้ามา
         self.char_val = []
-        bracket_flag = False
+        check_not = ''
         char_keep = ""
 
         for CharInInfixGET in InfixGET:
@@ -55,7 +54,7 @@ class infix_to_postfix:
                         self.postfix.append(mystack.pop())
                 if CharInInfixGET == '(':  # ถ้าเจอ ( ให้ดูตัวก่อนหน้าถ้าเป็น !
                     if mystack.peek() == '!':
-                        bracket_flag = True
+                        check_not = True
                     mystack.push(CharInInfixGET)  # เพิ่มเข้าmytack
                 elif CharInInfixGET == '!':
                     mystack.push(CharInInfixGET)  # เพิ่มเข้าmytack
@@ -64,9 +63,9 @@ class infix_to_postfix:
                     while topToken != '(':
                         self.postfix.append(topToken)
                         topToken = mystack.pop()  # ตรวจดู (
-                    if bracket_flag == True and mystack.peek() == '!':
+                    if check_not == True and mystack.peek() == '!':
                         self.postfix.append(mystack.pop())
-                        bracket_flag = False
+                        check_not = False
                 else:
                     while (not mystack.is_empty()) and (prec[mystack.peek()] >= prec[CharInInfixGET]):
                         self.postfix.append(mystack.pop())
@@ -85,8 +84,8 @@ class infix_to_postfix:
         return self.postfix
 
 
-infix_to_postfix("!(1+0)")
-infix_to_postfix("!(!(0+I0&1))")
-infix_to_postfix("(I0+!I1+!(I2))&(!I0+I1+I2)")
-infix_to_postfix("!(I0&I1)+!(I1+I2)")
-infix_to_postfix("(((I0&I1&!I2)+!I1)+I3)")
+Operator("!(1+0)")
+Operator("!(!(0+I0&1))")
+Operator("(I0+!I1+!(I2))&(!I0+I1+I2)")
+Operator("!(I0&I1)+!(I1+I2)")
+Operator("(((I0&I1&!I2)+!I1)+I3)")
