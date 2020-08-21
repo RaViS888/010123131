@@ -16,7 +16,7 @@ class Stack:  # ref form https://runestone.academy/runestone/books/published/pyt
         return self.stack_list.pop()  # สงค่าท้าย และลบค่านั้นออก
 
     def peek(self):  # ดู stack ที่เก็บไว้(ใช้ตรวขว่าเป็น!)ถ้าไม่มีreturn none ถ้ามีให้ return ค่าตัวก่อนหน้า
-        if self.is_empty():  # ดูว่าในstack ว่างเปล่าหรือไม่
+        if self.stack_list == []:  # ดูว่าในstack ว่างเปล่าหรือไม่
             return None
         else:
             return self.stack_list[len(self.stack_list) - 1]
